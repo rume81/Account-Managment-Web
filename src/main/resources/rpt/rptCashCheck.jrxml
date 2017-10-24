@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptCashCheck" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cc3730bf-b1f7-4511-9cbb-e79835589eed">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false">
+		<defaultValueExpression><![CDATA["F:\\EY3\\AMS\\rpt\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="devcode" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["010"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="jaspercustomsubreportdatasource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<queryString>
+		<![CDATA[SELECT * FROM devtables
+WHERE devcode=$P{devcode};]]>
+	</queryString>
+	<field name="devcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="118" y="0" width="320" height="35" backcolor="#E3E3E3" uuid="71e8e6a6-dcde-4a05-a918-c6813064cd73"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[現金出納簿　付属帳票]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="356" splitType="Stretch">
+			<staticText>
+				<reportElement x="275" y="0" width="275" height="25" backcolor="#E3E3E3" uuid="b837a04e-cc1b-44c0-8aba-2f3679ccb57a"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[ 本日の現金残高内訳]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="0" y="51" width="270" height="25" uuid="8af596bc-6444-4efc-87cf-135f9566dc10"/>
+				<subreportParameter name="devcode">
+					<subreportParameterExpression><![CDATA[$F{devcode}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($P{jaspercustomsubreportdatasource}.getData())]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
+			</subreport>
+			<line>
+				<reportElement x="275" y="30" width="275" height="1" uuid="78afc83d-5cbd-4d04-bb73-66c9fb90e82b"/>
+			</line>
+			<line>
+				<reportElement x="275" y="50" width="275" height="1" uuid="d399ff83-74ff-4fd0-835b-2f1c1a75e013"/>
+			</line>
+			<line>
+				<reportElement x="275" y="70" width="275" height="1" uuid="615dc436-9654-4e41-8fe9-d7601e896e91"/>
+			</line>
+			<line>
+				<reportElement x="275" y="30" width="1" height="260" uuid="a0106035-660d-4053-aa4e-55f793916dc0"/>
+			</line>
+			<line>
+				<reportElement x="550" y="30" width="1" height="260" uuid="5e4417c7-7a22-4a42-ac19-302d3d21d24c"/>
+			</line>
+			<line>
+				<reportElement x="350" y="30" width="1" height="260" uuid="75229d9a-29db-4670-9f21-f4df3cee526c"/>
+			</line>
+			<line>
+				<reportElement x="415" y="30" width="1" height="260" uuid="aa7b3831-bf0c-42fb-90b4-5bcf6eb94efb"/>
+			</line>
+			<line>
+				<reportElement x="440" y="30" width="1" height="260" uuid="b1a5fee5-74f3-4a5b-8977-ee597e023b35"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="490" y="30" width="1" height="260" uuid="896b76a1-c287-40cd-a757-c1f70d345098"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="275" y="90" width="275" height="1" uuid="132ec924-5d13-48ac-ad5e-db7ae3fa586f"/>
+			</line>
+			<line>
+				<reportElement x="275" y="110" width="275" height="1" uuid="12dacac4-9e74-4b26-92ae-9f96e8de306c"/>
+			</line>
+			<line>
+				<reportElement x="275" y="130" width="275" height="1" uuid="1c7a0cb6-a76d-4d00-a8a4-9fdf9051270d"/>
+			</line>
+			<line>
+				<reportElement x="275" y="150" width="275" height="1" uuid="3b895e45-793c-4858-8086-914e48710329"/>
+			</line>
+			<line>
+				<reportElement x="275" y="170" width="275" height="1" uuid="463f75b8-d924-44b0-b6ce-e86f690f45d4"/>
+			</line>
+			<line>
+				<reportElement x="275" y="190" width="275" height="1" uuid="d90c60ae-3dbc-40d2-90af-ff929a1fe6d1"/>
+			</line>
+			<line>
+				<reportElement x="275" y="210" width="275" height="1" uuid="21f750e9-813d-4068-b8b7-f27321a55913"/>
+			</line>
+			<line>
+				<reportElement x="275" y="230" width="275" height="1" uuid="b9262de3-2c42-4443-be47-96fefbabf6a9"/>
+			</line>
+			<line>
+				<reportElement x="275" y="250" width="275" height="1" uuid="df2c3398-6259-4b14-94fd-3de908352c0f"/>
+			</line>
+			<line>
+				<reportElement x="275" y="270" width="275" height="1" uuid="e5e3f95e-5422-40cc-95ab-cfb0f1f946af"/>
+			</line>
+			<line>
+				<reportElement x="275" y="290" width="275" height="1" uuid="a6d755cd-1bba-410f-b06e-1c06772645ea"/>
+			</line>
+			<staticText>
+				<reportElement x="276" y="31" width="75" height="20" uuid="1dc08992-75fb-45c5-87be-b97159d20073"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[一万円札]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="51" width="76" height="20" uuid="e052c6e3-5141-466f-811b-642979fee227"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[五千円札]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="71" width="75" height="20" uuid="3531eacd-08c8-4796-8bc4-18b903e124ac"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[一千円札]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="91" width="75" height="20" uuid="0465eb69-2a01-4b1d-aee0-410ec11a4372"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[５００円玉]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="111" width="75" height="20" uuid="078f87f4-d29d-47ee-b88f-f05141b63d96"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[１００円玉]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="131" width="74" height="20" uuid="2c15a12e-1bff-44ea-b938-f3ae9f7ac164"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[５０円玉]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="151" width="75" height="20" uuid="2b2497c4-553a-4833-a07b-06aae42f3cb2"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[１０円玉]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="171" width="75" height="20" uuid="3482a5a0-5c76-4d44-89e1-8011a5458349"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[５円玉]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="191" width="75" height="20" uuid="84a79391-6db0-4c1a-8568-50f747a433c2"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[１円玉]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="211" width="75" height="20" uuid="ec081798-bd80-437d-adaf-647fab7fcbdd"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[小切手]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="231" width="75" height="20" uuid="1b2c1af2-f68c-4bbb-9e08-c9029abd9177"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[〒切手]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="251" width="74" height="20" uuid="5c773e31-9f62-406e-9482-038abbd5ea89"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[為　替]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="271" width="75" height="20" uuid="e86d9972-4dbd-4441-8fee-5662370a9064"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="31" width="65" height="20" uuid="9d6f143e-6517-41ec-84aa-6bb9decb9203"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[枚]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="51" width="64" height="20" uuid="d61bc6bf-f22c-4a3d-ab35-9c9d76b8c283"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[枚]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="71" width="65" height="20" uuid="8a8319d6-3c39-434d-9c35-5646a50db39c"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[枚]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="91" width="65" height="20" uuid="f405b0ad-b108-48dd-a635-d64918828c1d"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[枚]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="111" width="65" height="20" uuid="9ebcc322-4137-422f-8b7b-71d4e7b46de3"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[枚]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="131" width="65" height="20" uuid="93f1bc5b-b15f-4821-9397-ceb3bd2b1b71"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[枚]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="151" width="65" height="20" uuid="058f368b-b516-48ee-bce4-b6e179beda31"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[枚]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="170" width="64" height="20" uuid="0bcf7671-ea79-49e1-9d81-6ece3c923d3a"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[枚]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="191" width="64" height="20" uuid="65ff1594-ffc1-4e0e-9d80-548feb54723c"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="210" width="100" height="20" uuid="d42a6013-2723-446e-8104-68c560d97881"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="230" width="66" height="20" uuid="dbcad8d6-31f3-4c07-8e76-fb5a35038109"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="251" width="64" height="20" uuid="89b83326-ffa2-4fcc-9c33-5f4cafcd9c7a"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="271" width="64" height="20" uuid="2f1131d6-c08e-40d7-a203-2cb4acc27714"/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="30" width="60" height="20" uuid="4e07b975-4812-4568-8fc5-788bdc46a3dd"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="50" width="60" height="20" uuid="a7e3b177-e6e4-49fd-9008-0ffec701bf1b"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="70" width="60" height="20" uuid="30aed7f3-76c7-4607-97bd-91697f84b455"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="90" width="60" height="20" uuid="b7925f32-d71e-4f90-9cb8-476f551fe0bc"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="110" width="60" height="20" uuid="6277382b-32a7-498b-9ec9-27073e2dbf6c"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="130" width="60" height="20" uuid="a51b50a9-5f16-4b4b-a871-65018e1a57ac"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="150" width="60" height="20" uuid="e08f880e-26f7-4ab7-8d63-e296e20a7c54"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="170" width="60" height="20" uuid="b928eb7e-1f4b-4aa2-999f-eebb344441f6"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="190" width="60" height="20" uuid="25b73a32-f089-4a08-8bff-c8cc8ea09089"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="210" width="60" height="20" uuid="47ad9925-1689-4fbd-bd71-5e702aa84ce8"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="230" width="60" height="20" uuid="10a07391-5afd-465d-8e0d-730cc130923c"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="250" width="60" height="20" uuid="0604ef86-8457-4cba-a784-0c6cf076d23e"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="270" width="60" height="20" uuid="d4e87140-269b-4880-9384-f9024cfebbf2"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[円]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="270" height="25" backcolor="#E3E3E3" uuid="d8827afa-eab2-4b6f-abb8-69f515346d82"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[平成 26 年 4 月 1 日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="60" height="20" uuid="ed967df8-224c-4cb6-9351-eaa78371b036"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="30" width="70" height="20" uuid="a9a496d3-01f1-4d6d-a5df-639a02c42d7f"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[前日繰越]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="30" width="70" height="20" uuid="078c596a-c8a3-4331-975c-d76423e03e83"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[本日収支]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="30" width="70" height="20" uuid="85ec7cd3-703b-4d8c-b63e-a3714c9e9ec2"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[残高]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="275" y="295" width="275" height="3" backcolor="#000000" uuid="5ba32010-dec6-413e-a735-8fcddecf2e3c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="325" y="305" width="80" height="20" uuid="a6276f37-a611-4f23-afe0-7827ec2b4cb2"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[合　計]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="415" y="305" width="134" height="20" uuid="b13f62de-3a20-4817-838f-0410845958a8"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+			</textField>
+			<line>
+				<reportElement x="440" y="305" width="1" height="20" uuid="9a4e81b2-00ee-45d1-9703-207949c23715"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="490" y="305" width="1" height="20" uuid="f686bef1-984f-4374-8430-4bd7a462246b"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

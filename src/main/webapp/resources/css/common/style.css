@@ -1,0 +1,307 @@
+* {
+    
+}
+body {
+  font: 14px sans-serif;
+  color: #000;
+  background-color:  #FFFFFF;
+}
+.fix {
+    overflow: hidden;
+    clear: both;
+}
+li {
+    list-style: none;
+    float: left;
+}
+.no_padding {
+    padding: 0;
+}
+.no_padding_right {
+    padding-right: 0;
+}
+.account_registration, .journal_entry {
+    background-color: #9CD6E6;
+    margin-top: 30px;
+    padding-top: 20px;
+    margin-bottom: 60px;
+    border-radius: 25px;
+}
+.main {
+    background-color: #9CD6E6;
+    margin-top: 30px;
+    padding-top: 20px;
+    margin-bottom: 60px;
+    border-radius: 25px;
+    padding-bottom: 50px;
+}
+.make_journal p, .document_search p, .opening_balance p, .create_ledger p, .trial_calculation p, .abstract_registration p{
+    background-color: #E1E1E1;
+    padding: 5px 2px 2px;
+    border: 1px solid #eee;
+    text-align: center;
+    margin-bottom: 3px;
+    height: 33px;
+}
+.text_left {
+    text-align: left !important;
+}
+.make_journal button {
+  height: 50px;
+  margin-top: 20px;
+  text-align: center;
+  width: 200px;
+}
+.opening_balance_button {
+    width: 140px;
+}
+.document_search ul {
+    padding: 0;
+}
+.document_search label {
+    font-weight: normal;
+    padding-top: 8px;
+    margin-right: 5px;
+}
+.document_search input[type="text"] {
+    text-align: right;
+}
+.document_search button {
+  height: 50px;
+  margin-bottom: 15px;
+  width: 140px;
+}
+.slip_scope {
+    margin: 15px 0;
+}
+.amount_range {
+    margin: 15px 0 0 0;
+}
+.serach_summary {
+    padding: 0 30px 0 30px;
+    margin-top: 30px;
+}
+.serach_summary input {
+    margin-bottom: 10px;
+}
+.subject_range {
+    margin: 20px 0;
+}
+.create_ledger .project, .create_ledger .select_course, .create_ledger .output_date {
+    margin-bottom: 20px;
+}
+.create_ledger button {
+    width: 200px;
+    height: 50px;
+    margin-top: 10px;
+}
+.account_regi_corr {
+  border: 2px solid #eee;
+  margin-bottom: 0;
+  padding: 7px 5px;
+}
+.r_save, .r_delete, .r_exit, .r_print_dev, .r_copy, .r_paste, .r_print {
+    min-width: 100px;
+    min-height: 30px;
+}
+.r_financial {
+    min-height: 25px;
+    min-width: 100px;
+}
+.account_registration_tb {
+    margin-top: 20px;
+}
+.account_registration_tb th{
+    background-color: #fff;
+}
+.account_registration_tb td{
+    padding: 5px 8px;
+}
+.slip_bumber {
+    margin-bottom: 20px;
+}
+.transfer_slip input, .slip_bumber input, .slip_bumber select {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  height: 34px;
+}
+.year {
+    width: 45px;
+}
+.month, .day {
+    width: 35px;
+}
+.t_slip_number {
+    width: 50px;
+}
+.journal_details ul, .journal_heading ul, .journal_details ul {
+  overflow: hidden;
+  padding: 0;
+  margin-bottom: 3px;
+}
+.journal_heading ul li {
+    border: 2px solid #eee;
+    padding: 5px;
+    margin-right: 3px;
+    text-align: center;
+}
+.h_project .l_number {
+    width: 4%;
+}
+.h_project .debit_account, .h_project .credit_account,.h_debit_details .dr_ac_details, .h_debit_details .cr_ac_details {
+    width: 25%;
+}
+.h_project .debit_amount, .h_project .credit_amount, .h_debit_details .cr_tax, .h_debit_details .dr_tax{
+    width: 12%;
+}
+.h_project .suppliers, .h_debit_details .project_details {
+    width: 20%;
+}
+.h_debit_details .dr_ac_details {
+    margin-left: 4.3%;
+}
+.remarks li{
+    margin-left: 4.3%;
+    width: 95.1%;
+}
+.journal_details {
+    margin-top: 20px;
+    /*padding-bottom: 10px;*/
+}
+.journal_details ul li {
+    margin-right: 2px;
+}
+.debit_details .prjcode {
+  width: 74px;
+}
+.project .i_line_number{
+    width: 4%;
+}
+.project .dr_sub_code, .project .cr_course_code {
+    width: 11%;
+}
+.project .i_drsub_code, .project .i_cr_course_code {
+    width: 5.5%;
+}
+.project .drsub_name, .project .cr_course_name {
+    width: 8.4%;
+}
+.project .dr_amount, .project .cr_amount {
+    width: 12%;
+}
+.project .customer_code {
+    width: 7%;
+}
+.project .customer_name {
+    width: 13%;
+}
+.debit_details, .summary {
+    margin-left: 4.3%;
+}
+.debit_details .dr_sub_code, .debit_details .cr_specific_code{
+    width: 17.3%;
+}
+.debit_details .dr_sub_name, .debit_details .cr_specific_name{
+    width: 8.8%;
+}
+.debit_details .dr_tax,.debit_details .cr_tax  {
+    width: 6.8%;
+}
+.debit_details .prjname {
+    width: 13%;
+}
+.summary .summary_code {
+    width: 25%;
+}
+.summary .summary_name {
+    width: 74%;
+}
+.trial_calculation button {
+  height: 50px;
+  margin-top: 5px;
+  width: 100%;
+}
+.trial_calculation .output_date {
+    margin: 10px 0;
+}
+.abstract_summary {
+    margin-top: 20px;
+}
+.abstract_summary ul {
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+}
+.department .devcode, .summary_input .summary_code {
+    width: 7%;
+}
+.department .devname {
+    width: 46%;
+}
+.summary_input .summary_name {
+    width: 20%;
+}
+.summary_input .debit_subcode {
+    width: 9%;
+}
+.summary_input .debit_subname {
+    width: 14%;
+}
+.summary_input .debit_amount {
+    width: 11%;
+}
+.summary_input .credit_item_code{
+    width: 11%;
+}
+.summary_input .credit_item_name{
+    width: 12%;
+} 
+.summary_input .credit_amount{
+    width: 11%;
+}
+.summary_input .edit_delete{
+    width: 5%;
+}
+.abstract_level .summary_code{
+    width: 7%;
+}
+.abstract_level .papaer_content{
+    width: 25%;
+}
+.abstract_level .debit_account {
+    width: 23%;
+}
+.abstract_level .debit_amount {
+    width: 22%;
+}
+.abstract_level .credit_account {
+    width: 12%;
+}
+.abstract_level .credit_amount {
+    width: 11%;
+}
+.no_border_right {
+  border-right: 0 none !important;
+  text-align: right !important;
+  padding-right: 0;
+  min-width: 120px !important;
+}
+.no_border_left {
+  border-left: 0 none !important;
+  min-width: 120px !important;
+}
+.acmaintain_table th, .acmaintain_table td{
+  min-width: 31px;
+}
+.bgbalance {
+	text-align: right;
+}
+.addnewrow {
+	visibility: hidden;
+	height: 0;
+	overflow: hidden;
+}
+.abstract_summary form {
+  height: 400px;
+  overflow-y: scroll;
+}

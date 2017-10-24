@@ -1,0 +1,42 @@
+* {
+    
+}
+.main_nav {
+    background-color: #EEEEEE;
+    margin-bottom: 0;
+}
+
+.main_nav .navbar-nav {
+	float: none;
+}
+.main_nav ul li {
+    padding: 10px;
+}
+.main_nav ul li a {
+    padding: 5px;
+    border: 2px solid #ffffff;
+}
+.body {
+    background-color: #9CD6E6;
+    margin-top: 40px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    border-radius: 25px;
+}
+.body button {
+    width: 90%;
+    margin-bottom: 25px;
+    font-size: 18px;
+}
+
+.main_footer {
+    background-color: #EEEEEE;
+    height: 30px;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
+
+.acmaintain_table{
+    padding-bottom: 20px;
+}

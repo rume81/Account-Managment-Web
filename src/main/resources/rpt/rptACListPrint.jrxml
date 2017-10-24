@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptACListPrint" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a999265c-4cdd-4528-ae87-be2453d91ef9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="devCode" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["010"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT actables.keycode, actables.devcode, devtables.devname, actables.accode, actables.acname, actables.acsubcode, actables.acsubname, actables.fscr, fscrtables.fscrname FROM (actables LEFT JOIN fscrtables ON actables.fscr = fscrtables.fscr) LEFT JOIN devtables ON actables.devcode = devtables.devcode AND devtables.devcode =$P{devCode} ORDER BY actables.keycode]]>
+	</queryString>
+	<field name="keycode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fscr" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fscrname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="Accode">
+		<groupExpression><![CDATA[$F{accode}]]></groupExpression>
+		<groupFooter>
+			<band height="2">
+				<line>
+					<reportElement x="1" y="0" width="554" height="1" uuid="53cb01cf-0bda-41d6-8bd1-84868ddd421f"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="1" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement x="168" y="0" width="248" height="31" uuid="59834235-715b-4ac6-83b8-6b638a2dab65"/>
+				<textElement textAlignment="Center">
+					<font size="20" isBold="false"/>
+				</textElement>
+				<text><![CDATA[勘定科目コードリスト]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="56" width="78" height="25" uuid="ac8ca723-549a-4880-a72a-b26d691c6242"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{devcode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="56" width="216" height="25" uuid="29d74e84-c5ae-46b0-8305-58e33b067ae9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{devname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="52" y="6" width="85" height="17" uuid="b8666755-993a-47b7-ab75-0d3d1a8ca9b3"/>
+				<textElement>
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[科目名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="6" width="194" height="17" uuid="ddc968b3-c14f-4cc2-a71c-def4b5f249c2"/>
+				<textElement>
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[細目名称]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="3" width="554" height="1" uuid="dc2a27fb-1a08-4f6e-a6a7-f5173808b626"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="1" y="25" width="554" height="1" uuid="150aaa20-aea5-4381-8280-dcbf249ac374"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="454" y="6" width="74" height="17" uuid="018b7d15-4e3e-4ffa-84d8-7f123fc39438"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[財務諸表区分]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="11" y="0" width="41" height="20" uuid="65cec698-da3e-4095-8a81-743f59113364"/>
+				<textFieldExpression><![CDATA[$F{accode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="52" y="0" width="140" height="20" uuid="32b47e63-b332-42a9-a693-732fe1e713d7"/>
+				<textFieldExpression><![CDATA[$F{acname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="194" y="0" width="58" height="20" uuid="63c1c7ab-c449-4da7-8fa6-2130501913f1"/>
+				<textFieldExpression><![CDATA[$F{acsubcode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="254" y="0" width="192" height="20" uuid="a7231d67-60f2-4e11-97bb-1e4f0bd40997"/>
+				<textFieldExpression><![CDATA[$F{acsubname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="446" y="0" width="109" height="20" uuid="731e9810-b2ab-4170-9ffa-f3bb2bfcc86e"/>
+				<textFieldExpression><![CDATA[$F{fscrname}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="8" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="2" width="554" height="1" uuid="ef6a8b0d-ce1d-4c88-b8d8-9e7a374939c0"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

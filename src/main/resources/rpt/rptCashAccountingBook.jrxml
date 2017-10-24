@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptCashAccountingBook" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4e58a949-81e3-4631-940e-61506d12cc8f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="reportParameter" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CurrentDateTime" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM ledger]]>
+	</queryString>
+	<field name="aggregate_key" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="je_number" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="s_number" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="l_number" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="yyyy" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mm" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dd" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="draccode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dracname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dracsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dracsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dramount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cramount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="balance" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="desname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sundry" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vendorcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vendorname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="otherdata" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="drctax" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="crctax" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prjcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prjname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="debitsum2" class="java.lang.Double" resetType="Group" resetGroup="grpfooter2" calculation="Sum">
+		<variableExpression><![CDATA[$F{dramount}]]></variableExpression>
+	</variable>
+	<variable name="creditsum2" class="java.lang.Double" resetType="Group" resetGroup="grpfooter2" calculation="Sum">
+		<variableExpression><![CDATA[$F{cramount}]]></variableExpression>
+	</variable>
+	<variable name="debitsum1" class="java.lang.Double" resetType="Group" resetGroup="grpfooter1" calculation="Sum">
+		<variableExpression><![CDATA[$F{dramount}]]></variableExpression>
+	</variable>
+	<variable name="creditsum1" class="java.lang.Double" resetType="Group" resetGroup="grpfooter1" calculation="Sum">
+		<variableExpression><![CDATA[$F{cramount}]]></variableExpression>
+	</variable>
+	<variable name="balance1" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{debitsum1} - $V{creditsum1}]]></variableExpression>
+	</variable>
+	<variable name="balance2" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{debitsum2} - $V{creditsum2}]]></variableExpression>
+	</variable>
+	<group name="grpfooter2">
+		<groupExpression><![CDATA[$F{acname}]]></groupExpression>
+		<groupFooter>
+			<band height="20">
+				<textField isBlankWhenNull="true">
+					<reportElement x="147" y="0" width="60" height="20" uuid="dfca8bfb-4901-46ae-a6f4-63d85f1f016a"/>
+					<textFieldExpression><![CDATA[$F{acname}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="207" y="0" width="30" height="20" uuid="36eba6ad-12c8-45c9-be33-7bef8d7ab934"/>
+					<text><![CDATA[合計]]></text>
+				</staticText>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="237" y="0" width="57" height="20" uuid="0a700fd8-5977-4b68-8d59-f733374f96d4"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{debitsum2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="298" y="0" width="60" height="20" uuid="f8f47e8c-5569-4f7c-87a1-ba2ed3fadc91"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{creditsum2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="361" y="0" width="60" height="20" uuid="fbc6ddb6-e356-48ba-b85a-a7013728cd77"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{balance2}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="grpfooter1">
+		<groupExpression><![CDATA[$F{acsubname}]]></groupExpression>
+		<groupFooter>
+			<band height="21">
+				<textField isBlankWhenNull="true">
+					<reportElement x="147" y="0" width="60" height="20" uuid="5f98ca27-70bf-4faa-85dc-e72faca15f6a"/>
+					<textFieldExpression><![CDATA[$F{acsubname}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="207" y="0" width="24" height="20" uuid="b4679c4e-4709-4e33-a0be-c883388fef6f"/>
+					<text><![CDATA[合計]]></text>
+				</staticText>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="234" y="0" width="60" height="20" uuid="b85fcf60-f122-4d97-8a8d-5addb666b525"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{debitsum1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="298" y="0" width="60" height="20" uuid="3fafb7f3-2911-4f85-9a35-72c86a065f5d"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{creditsum1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="361" y="0" width="60" height="20" uuid="8f853991-74ae-4412-8bfb-83dcba49a581"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{balance1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="104" height="32" uuid="4a9c7fff-6f13-434c-bc78-6675987d9c23"/>
+				<textElement>
+					<font fontName="SansSerif" size="24"/>
+				</textElement>
+				<text><![CDATA[現金出納簿]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="8" width="35" height="18" uuid="075c3bec-2f1b-4915-9385-67b4b53da5bd"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[部　門]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="8" width="55" height="18" uuid="5a5294ca-b291-478e-8afa-2a4a4c42b5ea"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{devcode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="240" y="8" width="225" height="18" uuid="3e56c9ed-6d6a-497b-b7d9-3e56ca003f2a"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{devname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="36" width="119" height="20" uuid="f20309a1-7174-4dd8-83c7-d2237b91bf65"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[残高金額の(　)は貸方]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="169f2b84-42e2-41f4-b441-0f38e77988a4"/>
+			</line>
+			<line>
+				<reportElement x="0" y="3" width="555" height="1" uuid="896bf2c2-78fa-4bfb-9fa4-b06bc1611904"/>
+			</line>
+			<textField>
+				<reportElement x="135" y="28" width="317" height="20" uuid="255debd9-08cc-4294-8018-cc7a133cb482"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{reportParameter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="40" width="100" height="20" forecolor="#000080" uuid="e58b28d3-cd32-4ab8-986b-2655857dc3e3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{CurrentDateTime}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="2" width="51" height="20" uuid="daa90765-0fa8-4546-abfc-9f74dfcc8db7"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[勘定科目]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="76" y="3" width="70" height="18" uuid="b8903bb8-7585-45bf-8aed-6f63694cec17"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{accode}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="4d104508-45b3-4e57-88be-89dc8245c332"/>
+			</line>
+			<textField>
+				<reportElement x="146" y="3" width="290" height="18" uuid="7a989324-1875-49ed-93f4-182726084a38"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{acname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="23" y="25" width="51" height="20" uuid="d651eb1a-1cf0-4b4b-b528-8f5a467e8579"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[勘定細目]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="146" y="26" width="290" height="18" uuid="74d9880d-67ff-4ee2-8ec9-3e8794f838db"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{acsubname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="26" width="70" height="18" uuid="0ab508db-c31e-4ec7-ba00-7dc8fd4df3a5"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="0.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{acsubcode}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="23" width="555" height="1" uuid="50d5c290-aba5-4847-938d-d6b558dfba9e"/>
+			</line>
+			<line>
+				<reportElement x="0" y="45" width="555" height="1" uuid="8ca7d731-1cdd-4873-bca2-86383a43078e"/>
+			</line>
+			<staticText>
+				<reportElement x="1" y="48" width="36" height="18" uuid="768cb710-1190-4fe5-8b24-9b78c824277b"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[伝票番号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="48" width="57" height="18" uuid="c1ed1343-0184-4884-8053-d8b66d3880f3"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[年月日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="97" y="48" width="50" height="18" uuid="7a79c9e3-350a-4418-ac05-f3e8906dc79a"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[相手科目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="234" y="48" width="60" height="18" uuid="78168cbf-4110-4ea7-ab6c-2298f406f2bb"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[借方金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="48" width="60" height="18" uuid="d5f28419-71fe-4779-9d54-ea50ace39b2e"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[貸方金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="48" width="60" height="18" uuid="c51b9168-8b4c-4565-b890-13968e363be6"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[残高金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="424" y="48" width="131" height="18" uuid="93619042-cfdd-4b43-8a20-cf75fa1a3e00"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[取引先]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="48" width="84" height="18" uuid="9792425a-2576-42b4-bbe1-6cfb23ef276c"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="0.5" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.25" lineColor="#CCCCCC"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[相手細目]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="70" width="555" height="1" uuid="6323eda0-e993-448a-8592-27826c4f07a3"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="30" height="20" uuid="d9aef365-a6aa-4883-8bed-7021519ba155"/>
+				<textFieldExpression><![CDATA[$F{s_number}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="0" width="30" height="20" uuid="3b4a0464-1f93-4f1a-8ac5-68746ebb3489"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{yyyy}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="58" y="0" width="19" height="20" uuid="b3111e3f-6428-409d-8afd-f2a85a0f7c7e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{mm}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="76" y="0" width="19" height="20" uuid="82405dae-cce6-47d7-861f-184bcd6293e1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{dd}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="97" y="0" width="49" height="20" uuid="3bdf32db-4dd7-4b62-8c61-54df24ef2d2a"/>
+				<textFieldExpression><![CDATA[$F{dracname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="424" y="0" width="131" height="20" uuid="49f1764c-32c7-4605-b752-278663e59f39"/>
+				<textFieldExpression><![CDATA[$F{desname}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(-#,##0)" isBlankWhenNull="true">
+				<reportElement x="361" y="0" width="60" height="20" uuid="cb6f24cf-b2e8-4f4c-8ee5-d33b3e09e79b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{balance}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(-#,##0)" isBlankWhenNull="true">
+				<reportElement x="298" y="0" width="60" height="20" uuid="3aada5ed-bd6c-4861-88ad-5b1f906545ce"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{cramount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(-#,##0)" isBlankWhenNull="true">
+				<reportElement x="234" y="0" width="60" height="20" uuid="93121615-fd46-4694-b95c-ccde74e53cd6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{dramount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="147" y="0" width="84" height="20" uuid="4dd6153c-570a-42a7-8c39-0d9c5dbad21f"/>
+				<textFieldExpression><![CDATA[$F{dracsubname}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="732349b7-b38d-4431-96ae-5283f600474f"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="465" y="17" width="30" height="20" uuid="1ef02587-9bf2-4080-b436-dcb9b42c0a54"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER} + "/"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="495" y="17" width="30" height="20" uuid="6b9f99e9-e0fc-466e-bbd5-a5a9b48b2206"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="525" y="17" width="30" height="20" uuid="bd5baf0d-9fcd-4162-a34c-b8eb7fa115ce"/>
+				<text><![CDATA[ページ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

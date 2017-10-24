@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptAbstractTablePrinting" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3aac6bcf-59cc-4c1b-bb93-26fc7e3a201a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CurrentDateTime" class="java.lang.String"/>
+	<parameter name="devcode" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCTROW description.devcode, description.devname, description.draccode, description.dracname, description.dracsubcode, description.dracsubname, description.craccode, description.cracname, description.cracsubcode,
+description.cracsubname, description.dramount, description.cramount, description.descode, description.desname FROM description
+WHERE description.devcode = '010' ORDER BY description.descode;]]>
+	</queryString>
+	<field name="devcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="draccode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dracname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dracsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dracsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="craccode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cracname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cracsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cracsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dramount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cramount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="desname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="5" width="225" height="30" forecolor="#000080" uuid="c7521484-e81f-4413-9f0f-507b5cf71d34"/>
+				<textElement verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[摘要テーブル]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="59" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="40" height="44" forecolor="#000080" uuid="fc7ad6ae-4851-4d3e-a105-02992f13ad73"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[摘要コード]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="4" width="70" height="20" forecolor="#000080" uuid="b2af6e51-9d99-43c4-af17-a27367230588"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[部門名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="4" width="140" height="20" forecolor="#000080" uuid="239d2065-7cb7-49a5-ba5c-eeb4d24336d2"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[借方科目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="4" width="140" height="20" forecolor="#000080" uuid="78272732-2c74-43c0-b3e5-181fe459d948"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[貸方科目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="4" width="65" height="20" forecolor="#000080" uuid="ceeae6b0-f815-4269-9c41-6b3bbb1ec4c6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[借方金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="4" width="100" height="44" forecolor="#000080" uuid="4fdd5b81-698f-4e69-abe5-6beb92978a28"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[摘要名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="110" y="28" width="140" height="20" forecolor="#000080" uuid="2bf8dee9-d9af-4b2b-b45e-832ea3af2717"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[借方細目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="250" y="28" width="140" height="20" forecolor="#000080" uuid="7b082724-fe75-42f0-a23a-1596018f6bbe"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[貸方細目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="390" y="28" width="65" height="20" forecolor="#000080" uuid="cbf9de34-31d2-4413-9ba0-42508f422210"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[貸方金額]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="52" width="555" height="1" forecolor="#000080" uuid="7e93aa1a-0a4d-4d3d-9df6-3601e6f283c4"/>
+			</rectangle>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="51" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="25" height="20" uuid="726f1ce9-455f-471f-9d65-e8d267c57a5f"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{descode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="27" y="0" width="25" height="20" uuid="88ff85cd-05f3-43a3-b851-19747708c3f1"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{devcode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="55" y="0" width="60" height="44" uuid="58ecba48-e30e-4373-bcd0-a67d2d35e600"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{devname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="117" y="0" width="40" height="20" uuid="9db31312-5643-440c-851f-444c9e8d8efc"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{draccode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="160" y="0" width="90" height="20" uuid="11b787a0-f766-4960-9f25-b042f7c0feff"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{dracname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="252" y="0" width="40" height="20" uuid="7236557f-be1f-4b13-be86-5c9d0430fbc1"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{craccode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="295" y="0" width="90" height="20" uuid="b6ce25e0-d97c-4692-98c6-d2a6986cc0b0"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{cracname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="387" y="0" width="65" height="20" uuid="184b634e-0d24-470a-b538-28b9f23606e4"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{dramount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="455" y="0" width="100" height="44" uuid="1c618f4d-6d2c-4618-9bf2-0db2462d236d"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{desname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="117" y="24" width="40" height="20" uuid="53470698-9187-405c-9750-ab782d2f1f9c"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{cracsubcode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="160" y="24" width="90" height="20" uuid="79723ce7-ca28-4eda-af19-a2657b9c45ca"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{dracsubname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="252" y="24" width="40" height="20" uuid="7a612c5b-9716-430f-b36a-5b5c94dcdb78"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{cracsubcode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="295" y="24" width="90" height="20" uuid="f2beee18-17f8-44a5-96f3-a76bd1f0a3da"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.5" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.5" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{cracsubname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="387" y="24" width="65" height="20" uuid="5f7be26b-aa29-4e4f-b95e-9b4c940ed8d3"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<rightPen lineWidth="1.0" lineColor="#CCCCCC"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{cramount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="36" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="10" width="100" height="20" uuid="61e6384c-cfcf-47c3-8794-bda12ec97890"/>
+				<textFieldExpression><![CDATA[$P{CurrentDateTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="10" width="25" height="20" uuid="fe8e743c-5545-4437-809a-8b6fd04e10e7"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER} + "/"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="487" y="10" width="20" height="20" uuid="86ecd9cd-7eb4-4301-a339-0efcfb4bf0c9"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="507" y="10" width="30" height="20" uuid="39e48a63-5c1d-4901-8a00-3988869d8a50"/>
+				<text><![CDATA[ ページ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptProjectBudget" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4d97fd99-7b3c-47de-9503-c7e890f13e2c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT project_budget.prjcode, project_budget.prjname, project_budget.aggregatekey, actables.acname, actables.acsubname, SUM(IFNULL(project_budget.debitamount,0)) AS debitamount, SUM(IFNULL(project_budget.creditamount,0)) AS creditamount FROM project_budget INNER JOIN actables ON project_budget.aggregatekey = actables.keycode GROUP BY project_budget.prjcode, project_budget.prjname, project_budget.aggregatekey, actables.acname, actables.acsubname ORDER BY project_budget.prjcode, project_budget.aggregatekey;]]>
+	</queryString>
+	<field name="prjcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="prjname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aggregatekey" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="debitamount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="creditamount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="debitSum" class="java.lang.Double" resetType="Group" resetGroup="drsum" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{debitamount}]]></variableExpression>
+	</variable>
+	<variable name="creditSum" class="java.lang.Double" resetType="Group" resetGroup="drsum" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{creditamount}]]></variableExpression>
+	</variable>
+	<variable name="DrMinCrSum" class="java.lang.Double" resetType="Group" resetGroup="drsum" incrementType="Report" calculation="Sum">
+		<variableExpression><![CDATA[$F{debitamount}-$F{creditamount}]]></variableExpression>
+	</variable>
+	<group name="drsum">
+		<groupExpression><![CDATA[$F{prjcode}]]></groupExpression>
+		<groupHeader>
+			<band height="45">
+				<textField>
+					<reportElement x="1" y="3" width="39" height="16" uuid="c6968834-aace-4a5c-8a06-f38777cf28fd"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement verticalAlignment="Middle"/>
+					<textFieldExpression><![CDATA[$F{prjcode}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="42" y="3" width="292" height="16" uuid="20dd284e-2165-468a-9c99-3a49a591a993"/>
+					<box>
+						<pen lineWidth="0.5"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textFieldExpression><![CDATA[$F{prjname}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="1" y="1" width="555" height="1" uuid="09f4c03a-58be-4292-9a5f-af59e5f10a8d"/>
+					<graphicElement>
+						<pen lineWidth="2.5" lineStyle="Dotted"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="0" y="23" width="125" height="20" uuid="da073108-0ec1-4b88-96cb-f08a37ac9089"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+					<text><![CDATA[科　　　　　目]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="125" y="23" width="130" height="20" uuid="3e83e527-395b-4972-a01e-d9c275e8f4c2"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+					<text><![CDATA[細　　　　　目]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="255" y="23" width="100" height="20" uuid="7ae5f1b2-ed9d-4b15-b167-307369f80ff8"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+					<text><![CDATA[借　　　　方]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="355" y="23" width="100" height="20" uuid="622a1121-c3c5-4c67-b68d-536909bcd175"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+					<text><![CDATA[貸　　　　方]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="456" y="23" width="100" height="20" uuid="7a852258-f880-4496-a0cb-5019542472b4"/>
+					<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+					<text><![CDATA[残　　　　高]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50">
+				<textField pattern="#,##0;(#,##0)">
+					<reportElement x="255" y="0" width="100" height="20" uuid="ddf93a89-3e38-4f82-b7c1-a8c4d3430efb"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{debitSum}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)">
+					<reportElement x="355" y="0" width="100" height="20" uuid="46753dbf-75b8-4475-a453-60130697f0ee"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{creditSum}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)">
+					<reportElement x="455" y="0" width="100" height="20" uuid="eb6cff39-8462-43ec-bbe0-904adf846fb8"/>
+					<box>
+						<pen lineWidth="0.75"/>
+						<topPen lineWidth="0.75"/>
+						<leftPen lineWidth="0.75"/>
+						<bottomPen lineWidth="0.75"/>
+						<rightPen lineWidth="0.75"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{DrMinCrSum} ]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="134" height="20" uuid="83175615-8b1d-4b0b-a482-baa001126d51"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[プロジェクト別経費]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="100" height="20" uuid="b29ddcbd-5f40-4018-99ed-ee523dbf6b79"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[範囲]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="1" width="125" height="20" uuid="190dd2a7-fcb4-4455-b70b-8e5f3598127f"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{acname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="1" width="130" height="20" uuid="f29eb2f3-9eb7-4154-acb0-0b166b12fdfb"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{acsubname}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)" isBlankWhenNull="false">
+				<reportElement x="255" y="1" width="100" height="20" uuid="83575ac4-3381-4947-a9e2-637dfc7cae97"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{debitamount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)">
+				<reportElement x="355" y="1" width="100" height="20" uuid="35ef8c85-bcb1-4dbe-8235-a0ba61706a00"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{creditamount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)">
+				<reportElement x="455" y="1" width="100" height="20" uuid="99689771-3e02-43d2-9867-f83d43ccf6ed"/>
+				<box>
+					<pen lineWidth="0.75"/>
+					<topPen lineWidth="0.75"/>
+					<leftPen lineWidth="0.75"/>
+					<bottomPen lineWidth="0.75"/>
+					<rightPen lineWidth="0.75"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{debitamount}-$F{creditamount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

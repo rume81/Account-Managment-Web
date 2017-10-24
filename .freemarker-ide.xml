@@ -1,0 +1,7 @@
+<config>
+	<context-values>
+	</context-values>
+	<macro-library>
+		<entry namespace="openingbalance" path="src/main/webapp/WEB-INF/views/freemarker/openingbalance.ftl" project="AMS" type="file"/>
+	</macro-library>
+</config>

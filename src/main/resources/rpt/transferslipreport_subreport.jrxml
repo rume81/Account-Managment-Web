@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="transferslipreport_subreport" language="groovy" pageWidth="802" pageHeight="555" orientation="Landscape" columnWidth="802" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ab93649f-34d9-4cfc-a2b3-85b42e981b8e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="devCode" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DISTINCT journals.devcode,journals.devname, journals.draccode, journals.dracname, journals.dracsubcode, journals.dracsubname, journals.craccode, journals.cracname, journals.cracsubcode, journals.cracsubname, journals.yyyy, journals.mm, journals.dd,journals.dramount,journals.cramount,journals.balance,journals.descode,journals.desname,journals.memo, journals.transtime, journals.drctax, journals.crctax, journals.vendorcode, journals.vendorname, journals.otherdata, journals.prjcode, journals.prjname, ctc.name, ctc_1.name as n1 FROM ((je_search_result_no LEFT JOIN journals ON je_search_result_no.je_number =journals.je_number) LEFT JOIN ctc ON journals.drctax = ctc.code) LEFT JOIN ctc AS ctc_1 ON journals.crctax = ctc_1.code WHERE ((( journals.devcode) = $P{devCode})) ORDER BY journals.s_number, journals.l_number;]]>
+	</queryString>
+	<field name="devcode" class="java.lang.String">
+		<fieldDescription><![CDATA[devcode]]></fieldDescription>
+	</field>
+	<field name="devname" class="java.lang.String">
+		<fieldDescription><![CDATA[devname]]></fieldDescription>
+	</field>
+	<field name="draccode" class="java.lang.String">
+		<fieldDescription><![CDATA[draccode]]></fieldDescription>
+	</field>
+	<field name="dracname" class="java.lang.String">
+		<fieldDescription><![CDATA[dracname]]></fieldDescription>
+	</field>
+	<field name="dracsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[dracsubcode]]></fieldDescription>
+	</field>
+	<field name="dracsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[dracsubname]]></fieldDescription>
+	</field>
+	<field name="craccode" class="java.lang.String">
+		<fieldDescription><![CDATA[craccode]]></fieldDescription>
+	</field>
+	<field name="cracname" class="java.lang.String">
+		<fieldDescription><![CDATA[cracname]]></fieldDescription>
+	</field>
+	<field name="cracsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[cracsubcode]]></fieldDescription>
+	</field>
+	<field name="cracsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[cracsubname]]></fieldDescription>
+	</field>
+	<field name="yyyy" class="java.lang.Long">
+		<fieldDescription><![CDATA[yyyy]]></fieldDescription>
+	</field>
+	<field name="mm" class="java.lang.Long">
+		<fieldDescription><![CDATA[mm]]></fieldDescription>
+	</field>
+	<field name="dd" class="java.lang.Long">
+		<fieldDescription><![CDATA[dd]]></fieldDescription>
+	</field>
+	<field name="dramount" class="java.lang.Double">
+		<fieldDescription><![CDATA[dramount]]></fieldDescription>
+	</field>
+	<field name="cramount" class="java.lang.Double">
+		<fieldDescription><![CDATA[cramount]]></fieldDescription>
+	</field>
+	<field name="balance" class="java.lang.Double">
+		<fieldDescription><![CDATA[balance]]></fieldDescription>
+	</field>
+	<field name="descode" class="java.lang.String">
+		<fieldDescription><![CDATA[descode]]></fieldDescription>
+	</field>
+	<field name="desname" class="java.lang.String">
+		<fieldDescription><![CDATA[desname]]></fieldDescription>
+	</field>
+	<field name="memo" class="java.lang.String">
+		<fieldDescription><![CDATA[memo]]></fieldDescription>
+	</field>
+	<field name="transtime" class="java.lang.String">
+		<fieldDescription><![CDATA[transtime]]></fieldDescription>
+	</field>
+	<field name="drctax" class="java.lang.String">
+		<fieldDescription><![CDATA[drctax]]></fieldDescription>
+	</field>
+	<field name="crctax" class="java.lang.String">
+		<fieldDescription><![CDATA[crctax]]></fieldDescription>
+	</field>
+	<field name="vendorcode" class="java.lang.String">
+		<fieldDescription><![CDATA[vendorcode]]></fieldDescription>
+	</field>
+	<field name="vendorname" class="java.lang.String">
+		<fieldDescription><![CDATA[vendorname]]></fieldDescription>
+	</field>
+	<field name="otherdata" class="java.lang.String">
+		<fieldDescription><![CDATA[otherdata]]></fieldDescription>
+	</field>
+	<field name="prjcode" class="java.lang.String">
+		<fieldDescription><![CDATA[prjcode]]></fieldDescription>
+	</field>
+	<field name="prjname" class="java.lang.String">
+		<fieldDescription><![CDATA[prjname]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="n1" class="java.lang.String">
+		<fieldDescription><![CDATA[n1]]></fieldDescription>
+	</field>
+	<variable name="sum_of_debit_amount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{dramount}]]></variableExpression>
+	</variable>
+	<variable name="sum_of_credit_amount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{cramount}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="68" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="4" width="66" height="20" uuid="bdfb2f6e-a730-4dff-a70c-f3fec11a6162"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{draccode} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="4" width="154" height="20" uuid="0165d858-2bbe-4b16-89e5-b24e3eafa1f5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{dracname} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="230" y="4" width="103" height="20" uuid="6824bddb-0ba0-4db9-8f3c-ba54e26b8807"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{dramount} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="4" width="66" height="20" uuid="55c1b0a0-d9ce-41cb-a1dc-637653ee47f7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{craccode} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="4" width="154" height="20" uuid="29a66e32-35c7-4669-b00c-7f361ad6d42a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{cracname} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="564" y="4" width="103" height="20" uuid="2be45bc0-42e3-41b6-9215-e9007e86b49b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{cramount} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="672" y="4" width="128" height="20" uuid="a29c497d-96d0-45e1-b17e-46beb88edd55"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{vendorname} : "" )]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="802" height="1" uuid="e21dca8a-2cfb-42de-8828-9ffb5ba4890b"/>
+			</line>
+			<line>
+				<reportElement x="0" y="25" width="802" height="1" uuid="5d7b7d56-724b-47d2-b847-02801c7663e7"/>
+			</line>
+			<line>
+				<reportElement x="0" y="1" width="1" height="67" uuid="4b386357-5eb1-4911-b2d2-974f0c672f68"/>
+			</line>
+			<line>
+				<reportElement x="69" y="1" width="1" height="45" uuid="e8841f6d-71c0-4cbe-a185-d2a51268c39f"/>
+			</line>
+			<line>
+				<reportElement x="801" y="1" width="1" height="67" uuid="a3a42ffd-9119-4a34-af55-2b0823546990"/>
+			</line>
+			<line>
+				<reportElement x="227" y="1" width="1" height="25" uuid="f82fc28f-0071-4ef1-9841-a61a5671b19a"/>
+			</line>
+			<line>
+				<reportElement x="561" y="1" width="1" height="25" uuid="ec4ee828-8375-49cb-9efd-e7e92e3981fa"/>
+			</line>
+			<line>
+				<reportElement x="334" y="1" width="1" height="45" uuid="95295349-2a8c-4b98-8394-40a971ab73f3"/>
+			</line>
+			<line>
+				<reportElement x="403" y="1" width="1" height="45" uuid="01a4db3d-e4b7-4aa5-bfe3-2e3213fdf340"/>
+			</line>
+			<line>
+				<reportElement x="668" y="1" width="1" height="45" uuid="ad84dcad-5297-415d-b14b-4bdd83bea13c"/>
+			</line>
+			<textField>
+				<reportElement x="72" y="26" width="182" height="20" uuid="de5bdcc0-c8bd-4b10-88fd-23039d5e1888"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{dracsubname} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="26" width="186" height="20" uuid="f541e549-dd9a-4c35-9803-69c454c345bf"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{cracsubname} : "" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="257" y="26" width="77" height="20" uuid="061af7bc-0cb7-430b-b4ac-952d5c721f8b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{name} : "" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="592" y="26" width="76" height="20" uuid="7408a853-737d-489b-89b1-14c43a952147"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{n1} : "" )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="337" y="26" width="66" height="20" uuid="57dff491-d652-495d-a1ab-16da177109c8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{cracsubcode} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="672" y="26" width="128" height="20" uuid="b19aed75-3f8e-4912-aa4d-102370afd6a8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{prjname} : "" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="3" y="26" width="66" height="20" uuid="d6646d8c-b6a8-46e5-8a6f-bbe299c56611"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{dracsubcode} : "" )]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="46" width="802" height="1" uuid="2ee777fa-1eab-4cec-b4a2-7b9ffe7facdf"/>
+			</line>
+			<line>
+				<reportElement x="255" y="26" width="1" height="20" uuid="b0d81445-5340-4dd6-bf37-eb23a1b6f2f0"/>
+			</line>
+			<line>
+				<reportElement x="591" y="26" width="1" height="20" uuid="33cfda6b-9268-4522-a22b-2c7c89b6bbb1"/>
+			</line>
+			<textField>
+				<reportElement x="3" y="47" width="797" height="20" uuid="9f74671d-743f-4326-81ca-6f0db425dd27"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( ($P{devCode}).equals($F{devcode}) ? $F{desname} : "" )]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="67" width="802" height="1" uuid="d3b0bf0d-59dd-4d5b-ae04-cadaa0a6a00d"/>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="29" splitType="Stretch">
+			<printWhenExpression><![CDATA[($P{devCode}).equals($F{devcode})]]></printWhenExpression>
+			<staticText>
+				<reportElement x="160" y="0" width="66" height="20" uuid="ea5699be-e846-4c41-bb64-7681e73b11b4"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[借方合計]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="0" width="103" height="20" uuid="e7364d73-0e8b-4440-bf77-2795fd138c9a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{sum_of_debit_amount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="495" y="0" width="66" height="20" uuid="0ece79b5-003d-4b45-9bca-1a4d685e147a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[貸方合計]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="565" y="0" width="103" height="20" uuid="c178821f-e058-4183-a3da-1b44ff808031"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{sum_of_credit_amount}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="1" height="28" uuid="8f50d1f3-9e0b-4396-8530-94161f36bc58"/>
+			</line>
+			<line>
+				<reportElement x="801" y="0" width="1" height="28" uuid="3e389963-f001-4773-a084-7c2793f736ad"/>
+			</line>
+			<line>
+				<reportElement x="0" y="27" width="802" height="1" uuid="48e09141-ebde-4e71-9a62-086060e60da7"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

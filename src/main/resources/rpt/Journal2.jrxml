@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Journal" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c3bd043e-5cac-4ae0-94c1-75699a0d9071">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CurrentDateTime" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SIWAKE_FROM" class="java.lang.Long" isForPrompting="false">
+		<defaultValueExpression><![CDATA[0L]]></defaultValueExpression>
+	</parameter>
+	<parameter name="BUMON" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["010"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="YMD_TO" class="java.lang.Long" isForPrompting="false">
+		<defaultValueExpression><![CDATA[20140529L]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SIWAKE_TO" class="java.lang.Long" isForPrompting="false">
+		<defaultValueExpression><![CDATA[999999L]]></defaultValueExpression>
+	</parameter>
+	<parameter name="YMD_FROM" class="java.lang.Long" isForPrompting="false">
+		<defaultValueExpression><![CDATA[20140529L]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DISTINCTROW journals.je_number, journals.s_number, journals.l_number, journals.yyyy, journals.mm, journals.dd,
+journals.devcode, Debit_Department_Subjects_Specific.devname, journals.draccode, Debit_Department_Subjects_Specific.acname
+AS debit_subject_name, journals.dracsubcode,Debit_Department_Subjects_Specific.acsubname AS debit_details_name, journals.dramount,
+journals.craccode, Credit_Department_Subjects_Specific.acname AS credit_subject_name, journals.cracsubcode,
+Credit_Department_Subjects_Specific.acsubname AS credit_details_name, journals.cramount, journals.descode,
+journals.desname,journals.vendorname, journals.transtime, journals.sundry , yyyy * 10000 + mm * 100 + dd
+AS date FROM journals LEFT JOIN Debit_Department_Subjects_Specific ON journals.drkey = Debit_Department_Subjects_Specific.aggregate_key
+LEFT JOIN Credit_Department_Subjects_Specific ON journals.crkey = Credit_Department_Subjects_Specific.aggregate_key WHERE journals.devcode = $P{BUMON}
+AND yyyy * 10000 + mm * 100 + dd >= $P{YMD_FROM} AND yyyy * 10000 + mm * 100 + dd  <= $P{YMD_TO} AND s_number >= $P{SIWAKE_FROM} AND s_number <= $P{SIWAKE_TO} ORDER BY
+yyyy, mm, dd, je_number,l_number;]]>
+	</queryString>
+	<field name="je_number" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="s_number" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="l_number" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="yyyy" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mm" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dd" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="draccode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="debit_subject_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dracsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="debit_details_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dramount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="craccode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="credit_subject_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cracsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="credit_details_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cramount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="descode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="desname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vendorname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="transtime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sundry" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="date" class="java.math.BigInteger">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="0" width="107" height="33" uuid="bfe78556-9108-4ca0-9b9b-825d3d2d21ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[仕　訳　帳]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="155" y="0" width="43" height="20" uuid="7774fbde-a19c-41c4-972c-b526ccee77c1"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[部　門]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="198" y="0" width="62" height="20" uuid="c5350c83-603a-4a94-b34f-8decee41df0b"/>
+				<textFieldExpression><![CDATA[$F{devcode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="260" y="0" width="158" height="20" uuid="94fc17f1-4048-4fc6-94b1-19b041b579d9"/>
+				<textFieldExpression><![CDATA[$F{devname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="5c1e3946-7246-4041-96e4-3ab5bd0dc195"/>
+				<textFieldExpression><![CDATA[$P{CurrentDateTime}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="33" width="106" height="1" uuid="414493ab-dc60-4bdb-826c-17c9e658bf32"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="2" y="0" width="106" height="1" uuid="208f35d3-2be9-43e9-bbe7-7e6fba48d864"/>
+				<graphicElement>
+					<pen lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="108" y="0" width="1" height="33" uuid="1f962e5c-e136-45d6-9509-0c819ab89de0"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="2" y="1" width="1" height="33" uuid="a6bcbe9c-d694-4d89-8707-393a5cb9686e"/>
+				<graphicElement>
+					<pen lineColor="#CCCCCC"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="45" height="20" uuid="c70d0057-6739-4ae0-a722-4d7f6622c977"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[伝票番号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="0" width="55" height="20" uuid="02360277-b148-4cae-adc4-c38cfecc3b72"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[計上年月日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="205" y="0" width="80" height="20" uuid="3c77a42c-4d02-413a-8161-6e854519edf6"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[貸方科目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="0" width="80" height="20" uuid="af5a0506-c604-41fa-b296-1ec0bfc13c46"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[借方科目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="358" y="0" width="52" height="20" uuid="39800c2e-2e55-4cb2-b72b-6b7cfe4496e3"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[貸方金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="0" width="137" height="20" uuid="c487fc5f-ca62-4ff3-ba97-e6bedfa01751"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[摘　　　要]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="0" width="51" height="20" uuid="7ac0ac40-4a47-4bdd-8631-c2bc00c562af"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[借方金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="24" width="80" height="20" uuid="a357965e-77b4-48e7-9e31-dc902259bbe3"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[借方細目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="205" y="24" width="80" height="20" uuid="7e51a6ff-32cb-4712-b87c-5ba1e0734253"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[貸方細目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="418" y="24" width="137" height="20" uuid="5631fc77-7971-4afe-af56-7ce9cf1d60db"/>
+				<box>
+					<topPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<leftPen lineWidth="1.0" lineColor="#CCCCCC"/>
+					<bottomPen lineWidth="1.25"/>
+					<rightPen lineWidth="1.25"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[取引先]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="47" width="554" height="1" uuid="4b2916bd-aece-4e90-9557-1516830dc1e4"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="418" y="20" width="132" height="20" uuid="09b46291-2173-442e-a51b-04f1cc4314bc"/>
+				<textFieldExpression><![CDATA[$F{vendorname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="450" y="0" width="100" height="20" uuid="759c388e-a0d8-4c6e-8350-9eb1f2126788"/>
+				<textFieldExpression><![CDATA[$F{desname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="418" y="0" width="32" height="20" uuid="ffa406e9-10cc-4071-a52e-df28226965d2"/>
+				<textFieldExpression><![CDATA[$F{descode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="22" height="20" uuid="5a8e58c0-dcee-472f-a0fe-f00223fedbe5"/>
+				<textFieldExpression><![CDATA[$F{s_number}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="22" y="0" width="23" height="20" uuid="deee52b7-f507-4452-92e2-e5f828618828"/>
+				<textFieldExpression><![CDATA[$F{l_number}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="55" y="0" width="25" height="20" uuid="541d7e14-9cb4-489c-9f06-cdd9725524f3"/>
+				<textFieldExpression><![CDATA[$F{yyyy}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="80" y="0" width="15" height="20" uuid="1ff133ab-bc70-4d75-bf3c-db8e5ba0fd50"/>
+				<textFieldExpression><![CDATA[$F{mm}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="95" y="0" width="15" height="20" uuid="29d7933e-5836-432d-a0a2-cb126fd7ff11"/>
+				<textFieldExpression><![CDATA[$F{dd}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="118" y="0" width="30" height="20" uuid="fbe850b4-2912-4df8-a762-460f4d762696"/>
+				<textFieldExpression><![CDATA[$F{draccode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="0" width="50" height="20" uuid="31202e47-6f47-4e35-acc5-6e224c1a6fa8"/>
+				<textFieldExpression><![CDATA[$F{debit_subject_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="205" y="0" width="30" height="20" uuid="3e66376f-bc38-46e3-83fa-cec9c2a1ce98"/>
+				<textFieldExpression><![CDATA[$F{craccode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="235" y="0" width="50" height="20" uuid="60438066-8dc1-4655-aabf-fcabec0ec839"/>
+				<textFieldExpression><![CDATA[$F{credit_subject_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="297" y="0" width="51" height="20" uuid="a2c514fd-6580-4f54-8efb-db8e44763296"/>
+				<textFieldExpression><![CDATA[$F{dramount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="358" y="0" width="52" height="20" uuid="5d0b54c5-88ae-495f-a9e2-96c96303d4fb"/>
+				<textFieldExpression><![CDATA[$F{cramount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="118" y="20" width="30" height="20" uuid="468149ea-69ba-45f6-b7a9-681f8aab3b16"/>
+				<textFieldExpression><![CDATA[$F{dracsubcode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="148" y="20" width="50" height="20" uuid="c037bcf0-e763-40ad-8b91-26826eec8193"/>
+				<textFieldExpression><![CDATA[$F{debit_details_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="205" y="20" width="30" height="20" uuid="7ce062f6-d941-464e-a8ee-63433847244d"/>
+				<textFieldExpression><![CDATA[$F{cracsubcode}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="235" y="20" width="50" height="20" uuid="e5d57dfe-7be1-42fe-b872-00d667b49b00"/>
+				<textFieldExpression><![CDATA[$F{credit_details_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="40" width="554" height="1" uuid="f9b97e7f-7649-438f-8873-99abee5c5dc3"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

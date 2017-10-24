@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptTrialBalance" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b397e2e1-6b7f-4a02-b071-fa1d08bab8a5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="reportParameter" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CurrentDateTime" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT * FROM trial_balance_temp;]]>
+	</queryString>
+	<field name="keycode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="accode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="budget" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="balance_before_provision" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="debit_amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="credit_amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="balance_amount" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subtotal_key" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subtotal_content" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="sumOfBalanceAmount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{balance_amount}]]></variableExpression>
+	</variable>
+	<variable name="sumOfCreditAmount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{credit_amount}]]></variableExpression>
+	</variable>
+	<variable name="sumOfDebitAmount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit_amount}]]></variableExpression>
+	</variable>
+	<variable name="sumOfRemainingAmount" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{balance_before_provision}]]></variableExpression>
+	</variable>
+	<variable name="expenseTotal" class="java.lang.String">
+		<variableExpression><![CDATA[($F{accode}.substring(0,1)== '1'? '資産合計' : ($F{accode}.substring( 0, 1)== '2' ? '負債合計' : ($F{accode}.substring( 0, 1)== '3' ? '正味財産合計' : ( $F{accode}.substring( 0, 1)== '4' ? '経常収益合計' : ($F{accode}.substring( 0, 1)== '5' ? '経常費用合計' : ( $F{accode}.substring( 0, 1)== '6' ? '経常外収益合計' : ( $F{accode}.substring(0,1)== '7' ? '経常外費用合計' : '' ) ) ) ) ) ) )]]></variableExpression>
+	</variable>
+	<variable name="grpProvisionBalance" class="java.lang.Double" resetType="Group" resetGroup="grpaccode" calculation="Sum">
+		<variableExpression><![CDATA[$F{balance_before_provision}]]></variableExpression>
+	</variable>
+	<variable name="grpDebit" class="java.lang.Double" resetType="Group" resetGroup="grpaccode" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit_amount}]]></variableExpression>
+	</variable>
+	<variable name="grpCredit" class="java.lang.Double" resetType="Group" resetGroup="grpaccode" calculation="Sum">
+		<variableExpression><![CDATA[$F{credit_amount}]]></variableExpression>
+	</variable>
+	<variable name="grpBalance" class="java.lang.Double" resetType="Group" resetGroup="grpaccode" calculation="Sum">
+		<variableExpression><![CDATA[$F{balance_amount}]]></variableExpression>
+	</variable>
+	<variable name="grp2ProvisionalBalance" class="java.lang.Double" resetType="Group" resetGroup="grpaccode" calculation="Sum">
+		<variableExpression><![CDATA[$F{balance_before_provision}]]></variableExpression>
+	</variable>
+	<variable name="grp2Debit" class="java.lang.Double" resetType="Group" resetGroup="grpaccode" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit_amount}]]></variableExpression>
+	</variable>
+	<variable name="grp2Credit" class="java.lang.Double" resetType="Group" resetGroup="grpaccode" calculation="Sum">
+		<variableExpression><![CDATA[$F{credit_amount}]]></variableExpression>
+	</variable>
+	<variable name="grp2Balance" class="java.lang.Double" resetType="Group" resetGroup="grpaccode" calculation="Sum">
+		<variableExpression><![CDATA[$F{balance_amount}]]></variableExpression>
+	</variable>
+	<group name="grpaccode">
+		<groupExpression><![CDATA[$F{accode}]]></groupExpression>
+		<groupFooter>
+			<band height="18">
+				<textField>
+					<reportElement x="18" y="0" width="100" height="17" uuid="b7b2a3f3-eb03-4b02-b8b4-15702f2dcb5f"/>
+					<textFieldExpression><![CDATA[$V{expenseTotal}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="259" y="0" width="70" height="17" uuid="1f3fd761-90ee-409d-a9eb-819b428a9ed8"/>
+					<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+						<topPen lineWidth="1.25" lineColor="#666666"/>
+						<leftPen lineWidth="1.25" lineColor="#666666"/>
+						<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{grp2ProvisionalBalance}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="329" y="0" width="71" height="17" uuid="e98e19cf-7034-418c-82c3-c69ff48c34d4"/>
+					<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+						<topPen lineWidth="1.25" lineColor="#666666"/>
+						<leftPen lineWidth="1.25" lineColor="#666666"/>
+						<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{grp2Debit}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="402" y="0" width="78" height="17" uuid="a9e9cf24-ca1d-486d-a978-c96bb9492beb"/>
+					<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+						<topPen lineWidth="1.25" lineColor="#666666"/>
+						<leftPen lineWidth="1.25" lineColor="#666666"/>
+						<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{grp2Credit}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="480" y="0" width="74" height="17" uuid="f2cff38d-742e-4a1a-a319-a937e148bee2"/>
+					<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+						<topPen lineWidth="1.25" lineColor="#666666"/>
+						<leftPen lineWidth="1.25" lineColor="#666666"/>
+						<bottomPen lineWidth="0.25" lineColor="#666666"/>
+						<rightPen lineWidth="0.25" lineColor="#666666"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{grp2Balance}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="grpSubtotal">
+		<groupExpression><![CDATA[$F{subtotal_content}]]></groupExpression>
+		<groupFooter>
+			<band height="22">
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="259" y="0" width="70" height="17" uuid="960bae25-33df-4ea3-8f10-159010fb4897"/>
+					<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+						<topPen lineWidth="1.25" lineColor="#666666"/>
+						<leftPen lineWidth="1.25" lineColor="#666666"/>
+						<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{grpProvisionBalance}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="329" y="0" width="71" height="17" uuid="e98e560e-75ed-4db8-9ca7-c25fd3ac24a1"/>
+					<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+						<topPen lineWidth="1.25" lineColor="#666666"/>
+						<leftPen lineWidth="1.25" lineColor="#666666"/>
+						<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{grpDebit}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="402" y="0" width="78" height="17" uuid="991b0df6-4caf-48cf-9654-daddb56f0285"/>
+					<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+						<topPen lineWidth="1.25" lineColor="#666666"/>
+						<leftPen lineWidth="1.25" lineColor="#666666"/>
+						<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{grpCredit}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+					<reportElement x="480" y="0" width="74" height="17" uuid="e19e323e-b30c-4da8-b1de-19788fe880a0"/>
+					<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+						<topPen lineWidth="1.25" lineColor="#666666"/>
+						<leftPen lineWidth="1.25" lineColor="#666666"/>
+						<bottomPen lineWidth="0.25"/>
+						<rightPen lineWidth="0.25" lineColor="#666666"/>
+					</box>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{grpBalance}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="18" y="2" width="100" height="20" uuid="475ddb2f-1e97-498e-95d0-62d0fa53cc04"/>
+					<text><![CDATA[小計内容]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="349" height="40" forecolor="#000066" uuid="1d0b8f45-f412-4c80-a36c-607d674555d5"/>
+				<textElement>
+					<font size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[取引先別合計残高試算表]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="354" y="0" width="201" height="15" uuid="b1fde110-b065-4c7e-96c1-d23b938ae670"/>
+				<textFieldExpression><![CDATA[$P{reportParameter}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="399" y="19" width="131" height="19" uuid="f51e6506-2f4e-49e0-bf95-87215db9b2f8"/>
+				<box>
+					<topPen lineWidth="1.5"/>
+					<leftPen lineWidth="1.5"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[残高金額の(　)は貸方]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="402" y="6" width="78" height="20" forecolor="#000066" uuid="b293c175-7ed6-46d5-8233-488d180add32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[貸方金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="6" width="75" height="20" forecolor="#000066" uuid="1a07d228-13b3-4e0e-8229-415f6bda475f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[残高金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="6" width="73" height="20" forecolor="#000066" uuid="a7ca689a-51c9-40af-b542-acf118e02c5f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[借方金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="6" width="71" height="20" forecolor="#000066" uuid="7d531741-a55f-4b9b-921d-212b2afc61c0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[前残金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="6" width="98" height="20" forecolor="#000066" uuid="7fd490a4-007d-4ba7-9600-ed586d67dd8a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[細目名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="38" y="6" width="80" height="20" forecolor="#000066" uuid="5bbb9a99-3096-4ef8-ad61-f6bbb7129788"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[科目名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="6" width="35" height="20" forecolor="#000066" uuid="310ac449-5779-417d-a58b-bb3d5d280c17"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[コード]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="6" width="37" height="20" forecolor="#000066" uuid="4e2ee06d-2386-4ee4-830f-7f077698d604"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[コード]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="3" y="3" width="35" height="17" uuid="677db938-d60c-4ce4-b54a-c0f654bbf7cd"/>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					<rightPen lineWidth="0.5" lineColor="#666666"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{accode}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+				<reportElement x="259" y="3" width="70" height="17" uuid="1fbc25d7-45e1-49a7-b0c4-1c6f7de25352"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					<rightPen lineWidth="0.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{balance_before_provision}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="3" width="106" height="17" uuid="499728a8-4e32-49e4-9bbe-9f986c035e1b"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{acsubname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="3" width="80" height="17" uuid="fcaa0e6e-b9a1-4a01-9c60-b4c71223b8ea"/>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					<rightPen lineWidth="0.5" lineColor="#666666"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{acname}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+				<reportElement x="480" y="3" width="74" height="17" uuid="add6486c-fb94-4abc-9335-ce02f2372041"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					<rightPen lineWidth="0.25" lineColor="#666666"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{balance_amount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+				<reportElement x="402" y="3" width="78" height="17" uuid="bc9768ae-b198-4e60-9d49-70f5d0506c03"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{credit_amount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)" isBlankWhenNull="true">
+				<reportElement x="329" y="3" width="71" height="17" uuid="5ef548b7-c1e0-4edc-b7af-b8880bae4272"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{debit_amount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="3" width="35" height="17" uuid="a8d87e1b-eded-407c-8f22-2b1c5325e7eb"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$F{acsubcode}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="464" y="5" width="20" height="20" uuid="cc66a670-4521-4b57-8e1e-a72f7b8cc165"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER} +" / "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="4" y="5" width="100" height="20" uuid="e43bd98b-3644-465d-9183-dd2538b79b42"/>
+				<textFieldExpression><![CDATA[$P{CurrentDateTime}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="484" y="5" width="20" height="20" uuid="05ae6798-6bb3-4fc1-b293-4c6c131a0c0f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="504" y="5" width="36" height="20" uuid="3080153a-a4ae-4a5c-8555-252a60e5014a"/>
+				<text><![CDATA[ページ]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="24" splitType="Stretch">
+			<textField pattern="#,##0;(#,##0)">
+				<reportElement x="480" y="0" width="74" height="20" uuid="0ea0f791-102a-430e-acef-650dadf8325e"/>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					<rightPen lineWidth="0.5" lineColor="#666666"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{sumOfBalanceAmount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)">
+				<reportElement x="402" y="0" width="78" height="20" uuid="ff96d211-c6e6-444e-a531-712aff4aa3a4"/>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					<rightPen lineWidth="0.5" lineColor="#666666"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{sumOfCreditAmount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)">
+				<reportElement x="329" y="0" width="71" height="20" uuid="9e3ecaed-8529-43fc-8d43-79c369a6dad2"/>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					<rightPen lineWidth="0.5" lineColor="#666666"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{sumOfDebitAmount}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;(#,##0)">
+				<reportElement x="259" y="0" width="70" height="20" uuid="0a9d3f7e-2d14-4e2f-8e9f-db37ff1fc4e5"/>
+				<box>
+					<topPen lineWidth="1.25" lineColor="#666666"/>
+					<leftPen lineWidth="1.25" lineColor="#666666"/>
+					<bottomPen lineWidth="0.25" lineColor="#666666"/>
+					<rightPen lineWidth="0.5" lineColor="#666666"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{sumOfRemainingAmount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

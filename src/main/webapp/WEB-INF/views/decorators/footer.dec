@@ -1,0 +1,10 @@
+	</div>
+        <section class="container">
+            <footer class="footer">
+                <div class="container main_footer">
+                    <p class="text-muted">Copyright &copy;2016-2020, by EY.</p>
+                </div>
+            </footer>
+        </section>
+    </body>
+</html>

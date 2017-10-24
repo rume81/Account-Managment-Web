@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subledger" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4e58a949-81e3-4631-940e-61506d12cc8f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="reportParameter" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="CurrentDateTime" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="title" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["補助元帳"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false">
+		<defaultValueExpression><![CDATA["F:\\Workspace\\AMS\\rpt\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="jaspercustomsubreportdatasource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<queryString>
+		<![CDATA[SELECT DISTINCT accode,acname,acsubcode,acsubname,devcode,devname FROM ledger]]>
+	</queryString>
+	<field name="accode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devcode" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="devname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="106" y="5" width="40" height="20" uuid="075c3bec-2f1b-4915-9385-67b4b53da5bd"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[部　門]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="146" y="5" width="63" height="20" uuid="5a5294ca-b291-478e-8afa-2a4a4c42b5ea"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{devcode}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="5" width="225" height="20" uuid="3e56c9ed-6d6a-497b-b7d9-3e56ca003f2a"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{devname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="436" y="5" width="119" height="20" uuid="f20309a1-7174-4dd8-83c7-d2237b91bf65"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[残高金額の(　)は貸方]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="169f2b84-42e2-41f4-b441-0f38e77988a4"/>
+			</line>
+			<line>
+				<reportElement x="0" y="3" width="555" height="1" uuid="896bf2c2-78fa-4bfb-9fa4-b06bc1611904"/>
+			</line>
+			<textField>
+				<reportElement x="107" y="27" width="317" height="20" uuid="255debd9-08cc-4294-8018-cc7a133cb482"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{reportParameter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="4" width="104" height="34" uuid="e18da632-8e99-448d-8256-0163fc68291b"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="102" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="4d104508-45b3-4e57-88be-89dc8245c332"/>
+			</line>
+			<textField>
+				<reportElement x="146" y="24" width="290" height="20" uuid="cc7173ac-d609-4801-be40-b7f4e59ff861"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{acsubname}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="44" width="1" height="57" uuid="1e7a4429-cf61-4eb6-8152-05383713d4d4"/>
+			</line>
+			<line>
+				<reportElement x="1" y="22" width="555" height="1" uuid="b57f2630-43d2-40a1-aa77-0db0934b60a0"/>
+			</line>
+			<staticText>
+				<reportElement x="333" y="46" width="58" height="20" uuid="4b6d24ec-3f31-4807-a6fa-76b45de746e0"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[貸方金額]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="76" y="24" width="70" height="20" uuid="93d88a7e-30c9-4c6f-8b71-95445c4cca4a"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{acsubcode}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="101" width="555" height="1" uuid="9bdfe910-f75d-43f0-a96c-13d333be5829"/>
+				<graphicElement>
+					<pen lineWidth="1.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="95" y="45" width="1" height="57" uuid="c2912d16-b7c3-4b7e-89be-654642a5622c"/>
+			</line>
+			<staticText>
+				<reportElement x="40" y="46" width="57" height="20" uuid="ade4dcdc-1973-4161-b032-e4ee818cf000"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[計上年月日]]></text>
+			</staticText>
+			<line>
+				<reportElement x="32" y="45" width="1" height="57" uuid="aed37f29-f055-4f62-8046-edf39cf5a992"/>
+			</line>
+			<line>
+				<reportElement x="554" y="44" width="1" height="57" uuid="4cc8a420-6c59-4a02-be85-99de97cabf2d"/>
+			</line>
+			<line>
+				<reportElement x="332" y="45" width="1" height="57" uuid="0e41d390-f0b5-4ee9-8515-69a02e1a9d27"/>
+			</line>
+			<textField>
+				<reportElement x="146" y="1" width="290" height="20" uuid="17acfd31-b483-4e56-acda-afeb6abfbb9f"/>
+				<textElement>
+					<font fontName="SansSerif" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{acname}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="393" y="46" width="58" height="20" uuid="4532d1d8-6feb-4240-9490-a710396c051f"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[残高金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="46" width="36" height="20" uuid="d492cf6d-09cb-4664-ac6a-012327048688"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[伝番号]]></text>
+			</staticText>
+			<line>
+				<reportElement x="272" y="44" width="1" height="57" uuid="4c10a58a-55ac-4edf-904a-c7beccce9bab"/>
+			</line>
+			<staticText>
+				<reportElement x="333" y="81" width="221" height="20" uuid="54b34b2d-fcc0-4430-ac44-727ecdb1eeaa"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[摘　       　　要]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="44" width="555" height="1" uuid="09b323c1-8e48-477c-8bbc-e716d76f5d8c"/>
+			</line>
+			<staticText>
+				<reportElement x="273" y="46" width="58" height="20" uuid="54ddf64e-b719-4c78-bbbe-5c7390c5715b"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[借方金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="46" width="90" height="20" uuid="d10e90ea-953f-4577-b0b7-176635890b49"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[相手細目]]></text>
+			</staticText>
+			<line>
+				<reportElement x="392" y="45" width="1" height="28" uuid="434cfb01-7214-42a8-8eb8-e0e05d6cb9c0"/>
+			</line>
+			<textField>
+				<reportElement x="76" y="1" width="70" height="20" uuid="0ab833ca-4fe0-402b-a016-a6b5a520836e"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{accode}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="453" y="46" width="100" height="20" uuid="ecaa7d4f-f2ca-4918-a247-71f7d9ab5ca4"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[取引先]]></text>
+			</staticText>
+			<line>
+				<reportElement x="452" y="45" width="1" height="28" uuid="0ac3fdab-28aa-4274-94a3-b04273dc21ad"/>
+			</line>
+			<staticText>
+				<reportElement x="23" y="24" width="51" height="20" uuid="31c5f769-7d5d-42ae-b5ff-5a87254357f0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[勘定細目]]></text>
+			</staticText>
+			<line>
+				<reportElement x="181" y="44" width="1" height="57" uuid="7de3afee-fe24-4faf-8478-74ddbdc8e3ab"/>
+			</line>
+			<staticText>
+				<reportElement x="273" y="81" width="58" height="20" uuid="82f430e7-90aa-49c5-97d5-ce5f2931cc39"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[消費税区分]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="73" width="554" height="1" uuid="be88d766-bbb4-4ba0-88b1-150800abcd35"/>
+			</line>
+			<staticText>
+				<reportElement x="97" y="46" width="84" height="20" uuid="efcedba2-0882-41af-84d7-4622bc254779"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[相手科目]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="1" width="51" height="20" uuid="f4378fdc-80c6-4c57-9ce1-a28a1e54dd87"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[勘定科目]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="433" splitType="Stretch">
+			<subreport>
+				<reportElement x="1" y="0" width="552" height="100" uuid="3ce4304e-49c3-4afc-a4ac-b9915406a096"/>
+				<subreportParameter name="accode">
+					<subreportParameterExpression><![CDATA[$F{accode}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource ($P{jaspercustomsubreportdatasource}.getData())]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="7" y="0" width="100" height="20" uuid="5f890cd5-d6e7-405c-965d-6efdbddc6b2b"/>
+				<textFieldExpression><![CDATA[$P{CurrentDateTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="485" y="2" width="23" height="20" uuid="2a8314c9-610e-44e9-b2ee-a922a87abed7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER} + "/"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="523" y="2" width="32" height="20" uuid="ae89c9b5-32a3-4c95-a45d-9274db337586"/>
+				<text><![CDATA[ ページ]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="508" y="2" width="15" height="20" uuid="848bcf6d-4b80-4628-a965-f61a14745b5f"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

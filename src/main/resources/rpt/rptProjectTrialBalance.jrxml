@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptProjectTrialBalance" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0adb403-b99d-4458-98e7-e4f2eb79e178">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="CurrentDateTime" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[SELECT business_segment_master.name,project_trial_balance.* FROM project_trial_balance LEFT JOIN business_segment_master ON project_trial_balance.subtotal_name = business_segment_master.business_segment
+WHERE project_trial_balance.aggregate_key >='0101120100';]]>
+	</queryString>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="subtotal_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aggregate_key" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="acsubname" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="debit_amount_sum" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="credit_amount_sum" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="debitSum" class="java.lang.Double" resetType="Group" resetGroup="grpSubtotal1" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit_amount_sum}]]></variableExpression>
+	</variable>
+	<variable name="creditSum" class="java.lang.Double" resetType="Group" resetGroup="grpSubtotal1" calculation="Sum">
+		<variableExpression><![CDATA[$F{credit_amount_sum}]]></variableExpression>
+	</variable>
+	<variable name="sumDiffernce" class="java.lang.Double" resetType="Group" resetGroup="grpSubtotal1" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit_amount_sum} - $F{credit_amount_sum}]]></variableExpression>
+	</variable>
+	<variable name="debitSum2" class="java.lang.Double" resetType="Group" resetGroup="grpSubtotal2" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit_amount_sum}]]></variableExpression>
+	</variable>
+	<variable name="creditSum2" class="java.lang.Double" resetType="Group" resetGroup="grpSubtotal2" calculation="Sum">
+		<variableExpression><![CDATA[$F{credit_amount_sum}]]></variableExpression>
+	</variable>
+	<variable name="difference2" class="java.lang.Double" resetType="Group" resetGroup="grpSubtotal2" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit_amount_sum} - $F{credit_amount_sum}]]></variableExpression>
+	</variable>
+	<variable name="debitSum3" class="java.lang.Double" resetType="Group" resetGroup="grpSubtotal3" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit_amount_sum}]]></variableExpression>
+	</variable>
+	<variable name="creditSum3" class="java.lang.Double" resetType="Group" resetGroup="grpSubtotal3" calculation="Sum">
+		<variableExpression><![CDATA[$F{credit_amount_sum}]]></variableExpression>
+	</variable>
+	<variable name="difference3" class="java.lang.Double" resetType="Group" resetGroup="grpSubtotal3" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit_amount_sum} - $F{credit_amount_sum}]]></variableExpression>
+	</variable>
+	<group name="grpSubtotal3">
+		<groupExpression><![CDATA[$F{subtotal_name}]]></groupExpression>
+		<groupFooter>
+			<band height="24">
+				<textField>
+					<reportElement x="5" y="0" width="100" height="20" uuid="2a262b44-20cd-42a1-b3e9-2278c1d3f64a"/>
+					<textFieldExpression><![CDATA[( $F{subtotal_name}.substring( 0, 1 ) =='1' ? "支出計" : "支出計" )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="210" y="0" width="100" height="20" uuid="1d5253c9-1b7e-452c-95d4-44395730b521"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{debitSum3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="315" y="0" width="120" height="20" uuid="92bf9351-f858-4d89-8321-42016514166f"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{creditSum3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="435" y="0" width="120" height="20" uuid="201dd5db-2b58-485f-a1ca-1d620ea9ce99"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[( $V{difference3}<0 ? "("+$V{difference3}.toString().substring(1)+")" : $V{difference3} )
+]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="21" width="555" height="1" uuid="ddccbc45-e9b7-4fb8-b519-eb9bbe0696b1"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="grpSubtotal2">
+		<groupExpression><![CDATA[$F{subtotal_name}]]></groupExpression>
+		<groupFooter>
+			<band height="22">
+				<textField isBlankWhenNull="true">
+					<reportElement x="0" y="0" width="100" height="20" uuid="11453282-0afa-4b84-b3d5-2dabcdfd382a"/>
+					<textFieldExpression><![CDATA[( $F{subtotal_name}.substring( 0, 1 ) =='1' ? "" : ( $F{subtotal_name}.substring( 0, 1 ) == '4' ? "事業費計" : "管理費計" ) )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="210" y="0" width="105" height="20" uuid="ef495db8-9d04-41f2-b6b2-f20e46b3a6ce"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[( $F{subtotal_name}.substring( 0, 1 ) =='1' ? "" : $V{debitSum2} )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="315" y="0" width="120" height="20" uuid="bc4edfa5-67f0-4902-9c0c-7388cd07e928"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[( $F{subtotal_name}.substring( 0, 1 ) =='1' ? "" : $V{creditSum2} )]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="435" y="0" width="120" height="20" uuid="b15d45d8-b161-4d76-9f25-af915ab9cdfd"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[( $F{subtotal_name}.substring( 0, 1 ) =='1' ? "" : $V{difference2} )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="21" width="555" height="1" uuid="7e61219d-bda9-4012-8be5-7c2789bf020b"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="grpSubtotal1">
+		<groupExpression><![CDATA[$F{name}]]></groupExpression>
+		<groupFooter>
+			<band height="23">
+				<textField>
+					<reportElement x="0" y="0" width="159" height="20" uuid="7add7bd5-b19f-4d94-8536-e749854235bf"/>
+					<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="210" y="0" width="105" height="20" uuid="00fe29ec-e846-41b5-a5f1-80abfb0c32cc"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{debitSum}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="176" y="0" width="34" height="20" uuid="9741098c-5ea7-4bb3-aa00-80f3917e59f9"/>
+					<textElement textAlignment="Right"/>
+					<text><![CDATA[計]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement x="315" y="0" width="120" height="20" uuid="b485b13a-a810-43f4-a423-c4ee3ac275d9"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[$V{creditSum}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement x="435" y="0" width="120" height="20" uuid="1d4fdf9e-d56c-4115-b44c-974bd704db66"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression><![CDATA[( $V{sumDiffernce}<0 ? "("+$V{sumDiffernce}.toString().substring(1)+")" : $V{sumDiffernce} )]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="21" width="555" height="1" uuid="41ff09fd-282c-4f92-88f7-a4ac987f1323"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="313" height="35" forecolor="#008080" uuid="e8b66225-128e-47a7-bc0e-4053dc6fc63a"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[プロジェクト別収支試算表]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="10" width="177" height="35" uuid="8d102483-a7e7-429c-94f2-5383ac124e07"/>
+				<text><![CDATA[単位：円　　（）は貸方残]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="20" uuid="113a8a94-bb72-49a5-92f4-49450b836136"/>
+				<text><![CDATA[科目名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="0" width="111" height="20" uuid="161e9f03-b14e-436c-9927-6112546c15be"/>
+				<text><![CDATA[細目名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="0" width="111" height="20" uuid="7e042fe1-5aee-4bde-8678-d12e7c8d0bb6"/>
+				<text><![CDATA[借　　　　方]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="0" width="111" height="20" uuid="8b684bb9-2c68-476a-872c-7dfc309ae125"/>
+				<text><![CDATA[貸　　　　方]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="444" y="0" width="111" height="20" uuid="0af83e20-341f-44ad-8e39-709fd5eb047c"/>
+				<text><![CDATA[残　　　　高]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="6" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="105" height="20" uuid="32367254-ae19-4f27-aa0d-1e818887f8be"/>
+				<textFieldExpression><![CDATA[$F{acname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="0" width="105" height="20" uuid="3efdea25-654e-427c-a02a-87e8cad3696b"/>
+				<textFieldExpression><![CDATA[$F{acsubname}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="210" y="0" width="105" height="20" uuid="a904ec3a-a44b-42ef-9476-f578b0861f7a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{debit_amount_sum}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="315" y="0" width="120" height="20" uuid="58023272-9c8d-4604-9d08-1768016a0f92"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{credit_amount_sum}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="435" y="0" width="120" height="20" uuid="666c2e59-2881-4b57-a6c0-9f2ace60dad6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{debit_amount_sum}-$F{credit_amount_sum}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="21" width="555" height="1" uuid="52cd84fd-1104-42fe-b2c0-5928947c19d5"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="5" width="20" height="20" uuid="067e6f8d-f0c0-49cc-87e2-66f53af15a32"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+" / "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="455" y="5" width="20" height="20" uuid="75fc6840-7da4-4d2a-ba29-db6f1461eac2"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="475" y="5" width="32" height="20" uuid="3e1fb662-4e73-42cd-b23f-b02227946be0"/>
+				<text><![CDATA[ページ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="5" y="5" width="128" height="20" uuid="401bcade-14ae-4ca1-b80e-ee95e68626b9"/>
+				<textFieldExpression><![CDATA[$P{CurrentDateTime}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

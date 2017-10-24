@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+  http://www.springframework.org/schema/beans 
+  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/util 
+  http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+ 
+     <!--here all the url value should contains the valid path for the jrxml file-->
+     
+    <bean id="pdfReportACListPrint"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptACListPrint.jrxml"
+          p:reportDataKey="datasource" />
+      
+	<bean id="pdfReportTransferSlip"
+		class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+		p:url="classpath:rpt/transferslipreport.jrxml"
+		p:reportDataKey="datasource"
+		p:subReportUrls-ref="transferSlipSubReportUrls"
+		p:subReportDataKeys-ref="transferSlipSubReportDatasource"/>
+	
+	<util:map id="transferSlipSubReportUrls">
+		<!-- This entry key must be declared exactly as you declared it in the master JRXML file -->
+		<entry key="SUBREPORT_DIR" value="classpath:rpt/transferslipreport_subreport.jrxml"/>
+	</util:map>
+ 
+	<util:list id="transferSlipSubReportDatasource">
+		<value>jaspercustomsubreportdatasource</value>
+	</util:list>
+	
+	<bean id="pdfReportJournal"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/Journal.jrxml"
+          p:reportDataKey="datasource" />
+         
+	<bean id="pdfReportJournal2"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/Journal2.jrxml"
+          p:reportDataKey="datasource" />
+          
+     <bean id="pdfCashAccountingBook"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptCashAccountingBook.jrxml"
+          p:reportDataKey="datasource" />
+
+    <bean id="pdfReportTrialBalanceAllDepartments"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptTrialBalanceAllDepartments.jrxml"
+          p:reportDataKey="datasource" />
+    
+    <bean id="pdfReportTrialBalance"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptTrialBalance.jrxml"
+          p:reportDataKey="datasource" />
+          
+    <bean id="pdfReportCustomerTrialBalance"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptCustomerTrialBalance.jrxml"
+          p:reportDataKey="datasource" />
+          
+    <bean id="pdfReportTrialbalancesubjectsby"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptTrialbalancesubjectsby.jrxml"
+          p:reportDataKey="datasource" />
+          
+    <bean id="pdfReportProjectBudget"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptProjectBudget.jrxml"
+          p:reportDataKey="datasource" />
+          
+    <bean id="pdfReportProjectBudget2"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptProjectBudget2.jrxml"
+          p:reportDataKey="datasource" />
+     
+    <bean id="pdfReportProjectTrialBalance"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptProjectTrialBalance.jrxml"
+          p:reportDataKey="datasource" />   
+          
+    <bean id="subledger"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/subledger.jrxml"
+          p:reportDataKey="datasource" 
+          p:subReportUrls-ref="SubReportUrls"
+		  p:subReportDataKeys-ref="subledgerSubReportDatasource"/>
+		  
+	<util:map id="SubReportUrls">
+		<entry key="SUBREPORT_DIR" value="classpath:rpt/subledger_subreport.jrxml"/>
+	</util:map>
+		
+	<util:list id="subledgerSubReportDatasource">
+		<value>jaspercustomsubreportdatasource</value>
+	</util:list>
+	
+	<bean id="subledger2"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/subledger2.jrxml"
+          p:reportDataKey="datasource" 
+          p:subReportUrls-ref="SubReportUrls2"
+		  p:subReportDataKeys-ref="subledgerSubReportDatasource2"/>
+		  
+	<util:map id="SubReportUrls2">
+		<entry key="SUBREPORT_DIR" value="classpath:rpt/subledger2_subreport.jrxml"/>
+	</util:map>
+		
+	<util:list id="subledgerSubReportDatasource2">
+		<value>jaspercustomsubreportdatasource</value>
+	</util:list>
+	
+	<bean id="cashCheck"
+          class="org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView"
+          p:url="classpath:rpt/rptCashCheck.jrxml"
+          p:reportDataKey="datasource" 
+          p:subReportUrls-ref="CashCheckSubReportUrls"
+		  p:subReportDataKeys-ref="CashCheckSubReportDatasource"/>
+		  
+	<util:map id="CashCheckSubReportUrls">
+		<entry key="SUBREPORT_DIR" value="classpath:rpt/rptCashCheck_subreport.jrxml"/>
+	</util:map>
+		
+	<util:list id="CashCheckSubReportDatasource">
+		<value>jaspercustomsubreportdatasource</value>
+	</util:list>
+</beans>

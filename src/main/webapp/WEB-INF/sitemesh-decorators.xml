@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/views/decorators">
+    <excludes>
+    	<pattern>*.html</pattern>
+    	<pattern>/login</pattern>
+    	<pattern>/users/valideduser</pattern>
+    	<pattern>/accountdelete</pattern>
+    	<pattern>/accountregister</pattern>
+    	<pattern>/keycodevalidate</pattern>
+    	<pattern>/bumonsansho</pattern>
+    	<pattern>/getdetails</pattern>
+    	<pattern>/tori_sansho</pattern>
+    	<pattern>/prjdetails</pattern>
+    	<pattern>/descdetails</pattern>
+    	<pattern>/journalsave</pattern>
+    	<pattern>/journalcreate</pattern>
+    	<pattern>/documentsearch</pattern>
+    	<pattern>/trialbalance</pattern>
+    	
+    	<!-- Ole Ul Islam -->
+    	<pattern>/updatebgbalance</pattern>
+    	<pattern>/insertDescription</pattern>
+    	<pattern>/updateDescription</pattern>
+    	<pattern>/deleteDescription</pattern>
+    	<pattern>/getDevname</pattern>
+    	<pattern>/debitDetails</pattern>
+    	<pattern>/createLedger</pattern>
+    </excludes>
+
+    <decorator name="main" page="/main.dec">
+          <pattern>/*</pattern>
+    </decorator>
+</decorators>
